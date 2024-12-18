@@ -4,6 +4,12 @@ require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
 use Controllers\AuthController;
+use Controllers\EventosController;
+use Controllers\PonentesCotroller;
+use Controllers\RegalosController;
+use Controllers\DashboardCotroller;
+use Controllers\PonentesController;
+use Controllers\RegistradosController;
 
 $router = new Router();
 
@@ -29,5 +35,16 @@ $router->post('/reestablecer', [AuthController::class, 'reestablecer']);
 $router->get('/mensaje', [AuthController::class, 'mensaje']);
 $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 
+//area de admiistracio
+$router->get('/admin/dashboard', [DashboardCotroller::class, 'index']);
 
+
+//area de ponentes
+$router->get('/admin/ponentes', [PonentesController::class, 'index']);
+//area de eventos
+$router->get('/admin/eventos', [EventosController::class, 'index']);
+//area de registrados
+$router->get('/admin/registrados', [RegistradosController::class, 'index']);
+//area de regalos
+$router->get('/admin/regalos', [RegalosController::class, 'index']);
 $router->comprobarRutas();
