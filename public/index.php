@@ -41,10 +41,15 @@ $router->get('/admin/dashboard', [DashboardCotroller::class, 'index']);
 
 //area de ponentes
 $router->get('/admin/ponentes', [PonentesController::class, 'index']);
+$router->get('/admin/ponentes/crear', [PonentesController::class, 'crear']);
+
+
+
+
 //area de eventos
 $router->get('/admin/eventos', [EventosController::class, 'index']);
 //area de registrados
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
 //area de regalos
 $router->get('/admin/regalos', [RegalosController::class, 'index']);
-$router->comprobarRutas();
+$router->comprobarRutas(); 
