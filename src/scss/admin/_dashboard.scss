@@ -41,6 +41,7 @@
     &__grid{
         display: flex;
         flex: 1;
+        overflow-y: auto;
     }
     &__sidebar{
         background-color: lighten(v.$gris-oscuro, 10);
@@ -84,6 +85,8 @@
         
         padding: 1rem 1rem 3rem 1rem;
         width: 100%;
+        overflow-y: scroll;
+
         @include m.tablet {
             padding: 1rem 5rem 3rem 5rem;
         }
