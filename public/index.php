@@ -42,6 +42,7 @@ $router->get('/admin/dashboard', [DashboardCotroller::class, 'index']);
 //area de ponentes
 $router->get('/admin/ponentes', [PonentesController::class, 'index']);
 $router->get('/admin/ponentes/crear', [PonentesController::class, 'crear']);
+$router->post('/admin/ponentes/crear', [PonentesController::class, 'crear']);
 
 
 
