@@ -1,6 +1,6 @@
 node_modules
 vendor
 includes/.env
-public\ImagenesPonentes
-public\img
-public\img\speakers
+public/ImagenesPonentes
+public/img
+public/img/speakers
