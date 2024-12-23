@@ -8,6 +8,12 @@
 
         let tags =[];
 
+        //recuperar del input oculto edicion y validacion qeu fallo
+        if(tagsInputHidden.value !== ''){
+            tags = tagsInputHidden.value.split(',');
+            mostrarTags();
+        }
+
         //EScuchar los cambios en el input
         tagsInput.addEventListener('keypress', guatdarTag);
 
