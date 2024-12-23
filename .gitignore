@@ -3,3 +3,4 @@ vendor
 includes/.env
 public/ImagenesPonentes
 public/img/speakers
+public\img
