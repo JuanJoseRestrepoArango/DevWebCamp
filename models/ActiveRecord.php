@@ -124,11 +124,20 @@ class ActiveRecord {
         return array_shift( $resultado ) ;
     }
 
+    //paginar registros
+
     // Busqueda Where con Columna 
     public static function where($columna, $valor) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} = '${valor}'";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
+    }
+
+    public static function total($columna){
+        $query = "SELECT DISTINCT( COUNT(".$columna.")) FROM " . static::$tabla ;
+        $resulltado = self::$db->query($query);
+        $total = $resulltado->fetch_array();
+        return (int)array_shift($total);
     }
 
     // crea un nuevo registro
