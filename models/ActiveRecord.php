@@ -125,6 +125,11 @@ class ActiveRecord {
     }
 
     //paginar registros
+    public static function paginar($porPag, $offset){
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC LIMIT ${porPag} OFFSET ${offset}" ;
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
 
     // Busqueda Where con Columna 
     public static function where($columna, $valor) {
