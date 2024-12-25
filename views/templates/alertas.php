@@ -3,7 +3,7 @@
         foreach($alerta as $mensaje){
 ?>
 
-    <div class="alerta--<?php echo $key;?>">
+    <div class="alerta alerta--<?php echo $key;?>">
             <?php echo $mensaje ;?>
     </div>
 
