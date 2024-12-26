@@ -22,8 +22,14 @@
         function terminoBusqueda(e){
             busqueda[e.target.name] = e.target.value;
 
+            //REINICIAR campos ocultos y selector de horas
+            inputHiddenHora.value = '';
+            inputHiddenDia.value = '';
+
             if(Object.values(busqueda).includes('')){//Buscar si algun valor del objeto busqeuda esta vacio
+                desActivarCampo();
                 return;
+
             }
 
             buscarEventos();
@@ -37,19 +43,31 @@
             const resultado = await fetch(url)
             const eventos = await resultado.json();
             
-
-            obtenerHorasDisponibles();
+           
+            obtenerHorasDisponibles(eventos);
 
         }
 
-        function obtenerHorasDisponibles(){
-            const horasDisponibles = document.querySelectorAll('#horas li');
+        function obtenerHorasDisponibles(eventos){
+            //reINICIAR LAS HORAS 
+            const listadoHoras = document.querySelectorAll('#horas li');
+            listadoHoras.forEach(li => li.classList.add('horas__hora--desactivada'))
+            activarCampo();
+
+
+            //Comprobar eeventos ya tomados 
+            const horasTomadas = eventos.map(eventos=>eventos.hora_id);
+            const listadoHorasArray = Array.from(listadoHoras);
+            const resultado =listadoHorasArray.filter(li => !horasTomadas.includes(li.dataset.horaId));
             
-            horasDisponibles.forEach(hora => hora.addEventListener('click',seleccionarHora));
+            resultado.forEach(li => li.classList.remove('horas__hora--desactivada'));
+            
+            const horasDisponibles = document.querySelectorAll('#horas li:not(.horas__hora--desactivada)');
+            horasDisponibles.forEach(hora => !hora.addEventListener('click',seleccionarHora));
         }
 
         function seleccionarHora(e){
-            
+
             //deshabilitar hora previa , si hay un nuevo click
             const horaPrevia = document.querySelector('.horas__hora--seleccionada');
             if(horaPrevia){
@@ -58,7 +76,31 @@
             //Agregar clase de seleccionado
             e.target.classList.add('horas__hora--seleccionada')
             inputHiddenHora.value = e.target.dataset.horaId;
+
+            //LLenar el campo oculto de dia
+            inputHiddenDia.value = document.querySelector('[name="dia"]:checked').value;
             
+        }
+
+        function activarCampo(){
+            campoParaActivado = document.querySelector('.formulario__campo--desactivado');
+            if(campoParaActivado){
+                campoParaActivado.classList.remove('formulario__campo--desactivado');
+                
+                campoParaActivado.classList.add('formulario__campo--activado');
+            }
+
+
+        }
+        function desActivarCampo(){
+            campoDesactivar = document.querySelector('#horas');
+            if(campoDesactivar){
+                campoDesactivar.classList.add('formulario__campo--desactivado');
+                
+                campoDesactivar.classList.remove('formulario__campo--activado');
+            }
+
+
         }
     }
 

@@ -147,7 +147,7 @@ class ActiveRecord {
             }
         }
         $resultado = self::consultarSQL($query);
-        return array_shift( $resultado ) ;
+        return $resultado;
     }
 
     public static function total($columna){
@@ -169,7 +169,7 @@ class ActiveRecord {
         $query .= join("', '", array_values($atributos));
         $query .= " ') ";
 
-        // debuguear($query); // Descomentar si no te funciona algo
+         //debuguear($query); // Descomentar si no te funciona algo
 
         // Resultado de la consulta
         $resultado = self::$db->query($query);

@@ -26,6 +26,23 @@
             @extend .horas__hora;
             background-color: v.$azul;
             color: v.$blanco;
+          
+        }
+
+        &--desactivada{
+            @extend .horas__hora;
+           
+            border: 1px solid v.$gris;
+            color: v.$gris;
+
+            &:hover{
+                
+                cursor: not-allowed;
+                border: 1px solid v.$gris;
+                color: v.$gris;
+                background-color: v.$blanco;
+                
+            }
         }
 
         

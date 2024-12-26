@@ -32,7 +32,8 @@ class EventosController{
             $evento->sincronizar($_POST);
 
             $alertas = $evento->validar();
-
+            
+        
             if(empty($alertas)){
                 $resultado = $evento->guardar();
                 if($resultado){

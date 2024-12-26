@@ -12,7 +12,7 @@ class Evento extends ActiveRecord{
     public $hora_id;
     public $ponente_id;
 
-    protected static $table = 'eventos';
+    protected static $tabla = 'eventos';
 
     protected static $columnasDB = [
         'id',
