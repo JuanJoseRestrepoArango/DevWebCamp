@@ -10,11 +10,12 @@ use Controllers\EventosController;
 use Controllers\PonentesCotroller;
 use Controllers\RegalosController;
 use Controllers\DashboardCotroller;
+use Controllers\PaginasController;
 use Controllers\PonentesController;
 use Controllers\RegistradosController;
 
 $router = new Router();
-
+//area administracion
 
 // Login
 $router->get('/login', [AuthController::class, 'login']);
@@ -70,4 +71,14 @@ $router->get('/api/ponente',[APIPonentes::class, 'ponente']);
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
 //area de regalos
 $router->get('/admin/regalos', [RegalosController::class, 'index']);
+
+
+
+//PAginas publicas
+
+$router->get('/',[PaginasController::class, 'index']);
+$router->get('/devwebcamp',[PaginasController::class, 'evento']);
+$router->get('/paquetes',[PaginasController::class, 'paquetes']);
+$router->get('/conferencias',[PaginasController::class, 'conferencias']);
+
 $router->comprobarRutas(); 
