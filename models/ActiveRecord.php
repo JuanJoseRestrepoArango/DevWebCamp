@@ -137,6 +137,12 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
+    //retornar los registros en un orden
+    public static function ordenar($columna, $orden){
+        $query = "SELECT * FROM " . static:: $tabla . " ORDER BY ${columna} ${orden}";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
     //busqueda where con dos valores 
     public static function whereArray($array = []){
         $query = "SELECT * FROM " . static::$tabla . " WHERE ";
