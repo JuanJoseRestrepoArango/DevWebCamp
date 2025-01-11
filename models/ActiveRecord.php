@@ -156,8 +156,13 @@ class ActiveRecord {
         return $resultado;
     }
 
-    public static function total($columna){
+    public static function total($columna = '', $valor = ''){
         $query = "SELECT DISTINCT( COUNT(".$columna.")) FROM " . static::$tabla ;
+
+        if($valor !== ''){
+            $query .=  " WHERE ${columna} =  ${valor}";
+        }
+        //debuguear(($query));
         $resulltado = self::$db->query($query);
         $total = $resulltado->fetch_array();
         return (int)array_shift($total);
