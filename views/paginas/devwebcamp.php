@@ -3,7 +3,7 @@
     <p class="devwebcamp__descripcion">Conoce la conferencia mas importante de Latinoamérica</p>
 
     <div class="devwebcamp__grid">
-        <div class="devwebcamp__imagen">
+        <div class="devwebcamp__imagen" <?php aos_animacion();?>>
             <picture>
                 <source srcset="/build/img/sobre_devwebcamp.avif" type="image/avif">
                 <source srcset="/build/img/sobre_devwebcamp.webp" type="image/webp">
@@ -11,7 +11,7 @@
             </picture>
         </div>
 
-        <div class="devwebcamp__contenido">
+        <div class="devwebcamp__contenido" <?php aos_animacion();?>>
             <p class="devwebcamp__texto">
                  DevWebCamp es un evento virtual diseñado para impulsar el aprendizaje y la colaboración en desarrollo web. Ofrece talleres, conferencias y actividades prácticas para desarrolladores de todos los niveles, desde principiantes hasta expertos. Es la oportunidad perfecta para actualizar tus conocimientos, aprender nuevas tecnologías y conectar con una comunidad apasionada por la web.
             </p>
