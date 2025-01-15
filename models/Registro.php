@@ -9,6 +9,7 @@ class Registro extends ActiveRecord{
     public $pago_id;
     public $token;
     public $usuario_id;
+    public $regalo_id;
 
     protected static $tabla = 'registros';
 
@@ -17,7 +18,8 @@ class Registro extends ActiveRecord{
         'paquete_id',
         'pago_id',
         'token',
-        'usuario_id'
+        'usuario_id',
+        'regalo_id'
     ];
 
     public function __construct($args = []){
@@ -26,5 +28,6 @@ class Registro extends ActiveRecord{
         $this->pago_id = $args['pago_id'] ?? null;
         $this->token = $args['token'] ?? null;
         $this->usuario_id = $args['usuario_id'] ?? null;
+        $this->regalo_id = $args['regalo_id'] ?? null;
     }
 }

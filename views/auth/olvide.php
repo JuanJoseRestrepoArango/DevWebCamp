@@ -10,7 +10,7 @@
             <input class="formulario__input" type="email" name="email" id="email" placeholder="Tu Email">
         </div>
 
-        <input type="submit" value="Enviar Instrucciones" class="formulario__submit">
+        <input type="submit" value="Enviar Instrucciones" class="formulario__submit formulario__submit--registrar">
     </form>
 
     <div class="acciones">

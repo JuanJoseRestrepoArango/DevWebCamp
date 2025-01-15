@@ -26,7 +26,7 @@
             <input class="formulario__input" type="password" name="password2" id="password2" placeholder="Confirmar password">
         </div>
 
-        <input type="submit" value="Crear Cuenta" class="formulario__submit">
+        <input type="submit" value="Crear Cuenta" class="formulario__submit formulario__submit--registrar">
     </form>
 
     <div class="acciones">

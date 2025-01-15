@@ -14,7 +14,7 @@
             <input class="formulario__input" type="password" name="password" id="password" placeholder="Tu password">
         </div>
 
-        <input type="submit" value="Iniciar Sesión" class="formulario__submit">
+        <input type="submit" value="Iniciar Sesión" class="formulario__submit formulario__submit--registrar">
     </form>
 
     <div class="acciones">

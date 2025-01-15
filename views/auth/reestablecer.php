@@ -12,7 +12,7 @@
                 <input class="formulario__input" type="password" name="password" id="password" placeholder="Tu Password">
             </div>
 
-            <input type="submit" value="Guardar Password" class="formulario__submit">
+            <input type="submit" value="Guardar Password" class="formulario__submit  formulario__submit--registrar">
         </form>
     <?php }?>
 

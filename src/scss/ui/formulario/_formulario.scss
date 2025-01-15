@@ -19,6 +19,7 @@
     &__campo{
         display: flex;
         flex-direction: column;
+        text-align: center;
         gap: 1rem;
         margin: 1.5rem 0;
         &--desactivado{
@@ -87,13 +88,17 @@
     &__submit{
         @include m.boton(v.$azul,v.$blanco);
         border-radius: 2rem;
-        max-width: 40%;
+        //max-width: 40%;
         margin: auto;
         align-self: center;
 
         &--registrar{
+            max-width: 40%;
+        }
+        &--full{
             width: 100%;
         }
+        
     }
 
 }
