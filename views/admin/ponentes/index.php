@@ -8,7 +8,7 @@
 </div>
 
 <div class="dashboard__cotenedor">
-    <?php if ($ponentes){?>
+    <?php if (!empty($ponentes)){?>
         <table class="table">
             <thead class="table__thead">
                 <tr>

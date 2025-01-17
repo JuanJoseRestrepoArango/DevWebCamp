@@ -119,9 +119,9 @@ class ActiveRecord {
 
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
-        $query = "SELECT * FROM " . static::$tabla . " LIMIT ${limite} ORDER BY id DESC" ;
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC LIMIT ${limite}" ;
         $resultado = self::consultarSQL($query);
-        return array_shift( $resultado ) ;
+        return $resultado;
     }
 
     //paginar registros
@@ -140,6 +140,13 @@ class ActiveRecord {
     //retornar los registros en un orden
     public static function ordenar($columna, $orden){
         $query = "SELECT * FROM " . static:: $tabla . " ORDER BY ${columna} ${orden}";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+    //retornar por orden y con limite
+    public static function ordenarLimite($columna, $orden,$limit){
+        $query = "SELECT * FROM " . static:: $tabla . " ORDER BY ${columna} ${orden} LIMIT ${limit}";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -162,6 +169,24 @@ class ActiveRecord {
         if($valor !== ''){
             $query .=  " WHERE ${columna} =  ${valor}";
         }
+        //debuguear(($query));
+        $resulltado = self::$db->query($query);
+        $total = $resulltado->fetch_array();
+        return (int)array_shift($total);
+    }
+    //total de registros con un array where
+    public static function totalArrayWhere($array = []){
+        $query = "SELECT DISTINCT COUNT(*) FROM " . static::$tabla ." WHERE ";
+
+        foreach($array as $key => $value){
+         
+            if($key == array_key_last($array)){
+                $query.= " ${key} = '${value}'";
+            }else{
+                $query.= " ${key} = '${value}' AND ";
+            }
+        }
+        
         //debuguear(($query));
         $resulltado = self::$db->query($query);
         $total = $resulltado->fetch_array();

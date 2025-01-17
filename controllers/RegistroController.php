@@ -21,17 +21,24 @@ class RegistroController{
 
         if(!is_auth()){
             header('Location: /');
+            return;
         }
 
         //Verificar si el usuario ya eligio un plan
         $registro = Registro::where('usuario_id', $_SESSION['id']);
 
+        if(isset($registro) && $registro->paquete_id == '2'){
+            header('Location: /boleto?id='. urlencode($registro->token));
+            return;
+        }
         if(isset($registro) && $registro->paquete_id == '3'){
             header('Location: /boleto?id='. urlencode($registro->token));
+            return;
         }
 
-        if($registro->paquete_id === "1"){
+        if(isset($registro) && $registro->paquete_id === "1"){
             header('Location: /finalizar-registro/conferencias');
+            return;
         }
 
         $router->render('registro/crear',[
@@ -43,10 +50,12 @@ class RegistroController{
         if($_SERVER['REQUEST_METHOD']==='POST'){
             if(!is_auth()){
                 header('Location: /login');
+                return;
             }
 
             if(isset($registro) && $registro->paquete_id == '3'){
                 header('Location: /boleto?id='. urlencode($registro->token));
+                return;
             }
 
             $token = substr(md5(uniqid(rand(),true)), 0, 8);
@@ -65,6 +74,7 @@ class RegistroController{
 
             if($resultado){
                 header('Location: /boleto?id='. urlencode($registro->token));
+                return;
             }
 
             debuguear($registro);
@@ -75,6 +85,7 @@ class RegistroController{
         if($_SERVER['REQUEST_METHOD']==='POST'){
             if(!is_auth()){
                 header('Location: /login');
+                return;
             }
 
             //validar valores de post si post esta vacio no se ejecutara mas codigo
@@ -109,6 +120,7 @@ class RegistroController{
         $id = $_GET['id'];
         if(!$id || !strlen($id) === 8){
             header('Location: /');
+            return;
         }
 
         //Buscarlo en la base de datos
@@ -116,6 +128,7 @@ class RegistroController{
 
         if(!$registro){
             header('Location: /');
+            return;
         }
 
         //LLenar las tablas de referencia
@@ -132,19 +145,28 @@ class RegistroController{
 
         if(!is_auth()){
             header('Location: /login');
+            return;
         }
 
         //Ver si el usuario si tiene el plan presencial
         $usuario_id = $_SESSION['id'];
         $registro = Registro::where('usuario_id', $usuario_id);
 
+
+        if(isset($registro) && $registro->paquete_id === "2"){
+            header('Location: /boleto?id=' . urldecode(($registro->token)));
+            return;
+        }
+
         if($registro->paquete_id !== "1"){
             header('Location: /login');
+            return;
         }
 
         //Redireccionar a boleto virtual
-        if(isset($registro->regalo_id)){
+        if(isset($registro->regalo_id) && $registro->paquete_id === "1"){
             header('Location: /boleto?id=' . urldecode(($registro->token)));
+            return;
         }
 
         $eventos = Evento::ordenar('hora_id','ASC');
@@ -178,6 +200,7 @@ class RegistroController{
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!is_auth()){
                 header('Location: /login');
+                return;
             }
 
             $eventos = explode(',', $_POST['eventos']);
